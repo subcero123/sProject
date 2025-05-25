@@ -1,0 +1,189 @@
+[gd_scene load_steps=16 format=3 uid="uid://dfbj1u1jbnvx7"]
+
+[ext_resource type="Texture2D" uid="uid://fmdplsbylfns" path="res://Sprites/Player/Player.png" id="1_oe601"]
+[ext_resource type="Script" uid="uid://bls30uh25bll2" path="res://Scripts/battleScene.gd" id="1_sx82k"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sx82k"]
+atlas = ExtResource("1_oe601")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ev6em"]
+atlas = ExtResource("1_oe601")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k0c5i"]
+atlas = ExtResource("1_oe601")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rb6vb"]
+atlas = ExtResource("1_oe601")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h4h5y"]
+atlas = ExtResource("1_oe601")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xnf6y"]
+atlas = ExtResource("1_oe601")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_34u6q"]
+atlas = ExtResource("1_oe601")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_od436"]
+atlas = ExtResource("1_oe601")
+region = Rect2(32, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_23xhd"]
+atlas = ExtResource("1_oe601")
+region = Rect2(64, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_454r0"]
+atlas = ExtResource("1_oe601")
+region = Rect2(96, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7xtrl"]
+atlas = ExtResource("1_oe601")
+region = Rect2(128, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ej56d"]
+atlas = ExtResource("1_oe601")
+region = Rect2(160, 64, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_34u6q"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sx82k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ev6em")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k0c5i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rb6vb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h4h5y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xnf6y")
+}],
+"loop": true,
+"name": &"enemy_idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_34u6q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_od436")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_23xhd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_454r0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7xtrl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ej56d")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[node name="BattleScene" type="Node2D"]
+script = ExtResource("1_sx82k")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(576, 330)
+
+[node name="Background" type="Sprite2D" parent="."]
+
+[node name="EnemySprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(856, 139)
+scale = Vector2(10, 10)
+sprite_frames = SubResource("SpriteFrames_34u6q")
+animation = &"enemy_idle"
+
+[node name="EnemyStats" type="VBoxContainer" parent="EnemySprite"]
+offset_left = 7.60002
+offset_top = -10.2
+offset_right = 47.6
+offset_bottom = 39.8
+scale = Vector2(0.325, 0.325)
+
+[node name="EnemyHP" type="Label" parent="EnemySprite/EnemyStats"]
+layout_mode = 2
+text = "HP:"
+
+[node name="EnemyStress" type="Label" parent="EnemySprite/EnemyStats"]
+layout_mode = 2
+text = "ST:"
+
+[node name="PlayerSprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(212, 547)
+scale = Vector2(10, 10)
+sprite_frames = SubResource("SpriteFrames_34u6q")
+animation = &"idle"
+
+[node name="PlayerStats" type="VBoxContainer" parent="PlayerSprite"]
+offset_left = 8.0
+offset_top = -10.0
+offset_right = 46.0
+offset_bottom = 40.0
+scale = Vector2(0.325, 0.325)
+
+[node name="PlayerHP" type="Label" parent="PlayerSprite/PlayerStats"]
+layout_mode = 2
+text = "HP:"
+
+[node name="PlayerStress" type="Label" parent="PlayerSprite/PlayerStats"]
+layout_mode = 2
+text = "ST:"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="UI" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ActionMenu" type="VBoxContainer" parent="CanvasLayer/UI"]
+layout_mode = 0
+offset_left = 1019.0
+offset_top = 521.0
+offset_right = 1130.0
+offset_bottom = 622.0
+
+[node name="AttackButton" type="Button" parent="CanvasLayer/UI/ActionMenu"]
+layout_mode = 2
+text = "Atacar"
+
+[node name="ActionOptions" type="VBoxContainer" parent="CanvasLayer/UI/ActionMenu"]
+layout_mode = 2
+
+[node name="HeavyHitButton" type="Button" parent="CanvasLayer/UI/ActionMenu/ActionOptions"]
+layout_mode = 2
+text = "Golpe Fuerte"
+
+[node name="FatigueHitButton" type="Button" parent="CanvasLayer/UI/ActionMenu/ActionOptions"]
+layout_mode = 2
+text = "Golpe Rapido"
+
+[node name="FadeRect" type="ColorRect" parent="CanvasLayer"]
+visible = false
+offset_left = 3.0
+offset_right = 43.0
+offset_bottom = 40.0
+scale = Vector2(28.7325, 16.3172)
+color = Color(0, 0, 0, 1)
