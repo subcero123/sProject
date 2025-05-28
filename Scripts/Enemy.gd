@@ -13,6 +13,16 @@ var hp = 30
 var stress = 0
 var animation_type = "enemy" # Valor por defecto
 
+# Nuevas estadísticas base
+var strength = 3      # Fuerza base (afecta daño físico)
+var dexterity = 3     # Destreza (afecta precisión y evasión)
+var intelligence = 2  # Inteligencia (afecta habilidades especiales)
+
+# Estadísticas derivadas
+var critical_chance = 5  # Porcentaje base de crítico
+var evasion = 8          # Porcentaje base de evasión
+var damage_reduction = 0 # Reducción de daño base
+
 @onready var sprite := $AnimatedSprite2D
 
 func _ready():
@@ -58,7 +68,14 @@ func start_battle():
 		"name": enemy_name,
 		"hp": hp,
 		"stress": stress,
-		"animation": animation_type # Esto es lo nuevo
+		"animation": animation_type,
+		# Pasar todas las estadísticas
+		"strength": strength,
+		"dexterity": dexterity,
+		"intelligence": intelligence,
+		"critical_chance": critical_chance,
+		"evasion": evasion,
+		"damage_reduction": damage_reduction
 	}
 
 	get_tree().change_scene_to_file("res://Scenes/battleScene.tscn")

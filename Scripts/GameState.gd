@@ -63,6 +63,44 @@ func calculate_player_stress_attack(attack_type):
         "fatigue_hit":
             base_stress = 15 + (player_data["intelligence"] * 1.5)
         "normal_attack":
-            base_stress = 5 + (player_data["dexterity"] * 0.5)
+            base_stress = 5 + (player_data["strength"] * 0.5)
+    
+    return round(base_stress)
+
+# Nueva función para calcular daño de enemigos
+func calculate_enemy_damage(attack_type = "normal_attack"):
+    var base_damage = 0
+    var critical_mult = 1.0
+    var variance = randf_range(0.9, 1.1)  # +/- 10% variación
+    
+    # Determinar el daño base según el tipo de ataque
+    match attack_type:
+        "heavy_attack":
+            base_damage = 5 + (enemy_data["strength"] * 1.5)
+        "stress_attack": 
+            base_damage = 2 + enemy_data["intelligence"]
+        "normal_attack":
+            base_damage = 3 + enemy_data["strength"]
+    
+    # Verificar golpe crítico
+    if randf() * 100 <= enemy_data["critical_chance"]:
+        critical_mult = 1.5
+        print("¡El enemigo logra un golpe crítico!")
+    
+    # Calcular daño final
+    var final_damage = round(base_damage * critical_mult * variance)
+    return final_damage
+
+# Nueva función para calcular estrés infligido por enemigos
+func calculate_enemy_stress_attack(attack_type = "normal_attack"):
+    var base_stress = 0
+    
+    match attack_type:
+        "heavy_attack":
+            base_stress = 5 + (enemy_data["strength"] * 0.5)
+        "stress_attack":
+            base_stress = 12 + (enemy_data["intelligence"] * 1.5)
+        "normal_attack":
+            base_stress = 5 + (enemy_data["dexterity"] * 0.3)
     
     return round(base_stress)
