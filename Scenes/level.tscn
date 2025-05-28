@@ -126,8 +126,7 @@ shape = SubResource("RectangleShape2D_6phgx")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_754fn")
-animation = &"idle"
-frame_progress = 0.780082
+animation = &"walk"
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 

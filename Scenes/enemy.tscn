@@ -73,7 +73,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_ta2yt")
 }],
 "loop": true,
-"name": &"idle",
+"name": &"enemy_idle",
 "speed": 5.0
 }, {
 "frames": [{
@@ -96,7 +96,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_1dp5w")
 }],
 "loop": true,
-"name": &"walk",
+"name": &"enemy_walk",
 "speed": 5.0
 }]
 
@@ -113,10 +113,10 @@ position = Vector2(1, 0)
 script = ExtResource("1_1f0kj")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
-position = Vector2(0, -1)
+position = Vector2(2, -1)
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_auwsv")
-animation = &"idle"
+animation = &"enemy_walk"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
 position = Vector2(2, -7)
